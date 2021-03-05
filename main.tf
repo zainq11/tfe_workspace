@@ -1,8 +1,8 @@
 variable "oauth_token_id" {}
 
-data "tfe_oauth_client" "client" {
-  oauth_client_id = var.oauth_token_id
-}
+# data "tfe_oauth_client" "client" {
+#   oauth_client_id = var.oauth_token_id
+# }
 
 resource "tfe_workspace" "workspace_by_tfe" {
   name         = "workspace_by_tfe"
@@ -12,6 +12,6 @@ resource "tfe_workspace" "workspace_by_tfe" {
   
   vcs_repo {
     identifier  = "berchevorg/tfe_workspace"
-    oauth_token_id = data.tfe_oauth_client.client.id
+    oauth_token_id = var.oauth_token_id
   }
 }
