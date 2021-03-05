@@ -12,6 +12,6 @@ resource "tfe_workspace" "workspace_by_tfe" {
   
   vcs_repo {
     identifier  = "berchevorg/tfe_workspace"
-    oauth_token_id = data.tfe_oauth_client.client
+    oauth_token_id = data.tfe_oauth_client.client.id
   }
 }
