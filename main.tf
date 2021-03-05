@@ -4,6 +4,16 @@ variable "oauth_token_id" {}
 #   oauth_client_id = var.oauth_token_id
 # }
 
+
+resource "tfe_oauth_client" "test" {
+  organization     = "georgiman"
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.oauth_token_id
+  service_provider = "github"
+}
+
+
 resource "tfe_workspace" "workspace_by_tfe" {
   name         = "workspace_by_tfe"
   organization = "georgiman"
@@ -12,6 +22,6 @@ resource "tfe_workspace" "workspace_by_tfe" {
   
   vcs_repo {
     identifier  = "berchevorg/tfe_workspace"
-    oauth_token_id = var.oauth_token_id
+    oauth_token_id = tfe_oauth_client.test.id
   }
 }
