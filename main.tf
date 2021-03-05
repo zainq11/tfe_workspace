@@ -18,7 +18,7 @@ resource "tfe_workspace" "workspace_by_tfe" {
   name         = "workspace_by_tfe"
   organization = "georgiman"
   working_directory = "test"
-  terraform_version = "0.12.28"
+  terraform_version = "0.12.29"
   
   vcs_repo {
     identifier  = "berchevorg/tfe_workspace"
