@@ -5,6 +5,7 @@ variable "vcs_reponame" {}
 variable "terraform_version" {}
 variable "vcs_oauth_token_id" {}
 variable "trigger_prefixes" {}
+variable "vcs_repoorg" {}
 
 resource "tfe_workspace" "workspace" {
 
@@ -29,7 +30,7 @@ resource "tfe_workspace" "workspace" {
 
   vcs_repo {
 
-    identifier = "berchevorg/${var.vcs_reponame}"
+    identifier = "${var.vcs_repoorg}/${var.vcs_reponame}"
 
     oauth_token_id = var.vcs_oauth_token_id
 
