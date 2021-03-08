@@ -1,13 +1,24 @@
-variable "oauth_token_id" {}
+variable "organization" {}
+variable "terraform_version" {}
+variable "vcs_oauth_token_id" {}
 
-resource "tfe_workspace" "workspace_by_tfe" {
-  name         = "workspace_by_tfe"
-  organization = "georgiman"
-  working_directory = "test"
-  terraform_version = "0.12.30"
-  
-  vcs_repo {
-    identifier  = "berchevorg/tfe_workspace"
-    oauth_token_id = var.oauth_token_id
-  }
+
+module "my_new_workspace" {
+
+  source = "./modules/workspace"
+
+  organization = var.organization
+
+  vcs_reponame = "different-repo"
+
+  vcs_working_directory = "test"
+
+  vcs_oauth_token_id = var.vcs_oauth_token_id
+
+  terraform_version = var.terraform_version
+
+  environments = ["dev", "test"]
+
+  trigger_prefixes = ["./module"]
+
 }
